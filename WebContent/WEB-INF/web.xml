@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<servlet-class>com.zeratul.web.AdminProductsServlet</servlet-class>
+  	<servlet-name>AdminProductsServlet</servlet-name>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>AdminProductsServlet</servlet-name>
+  	<url-pattern>/adminProductsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
