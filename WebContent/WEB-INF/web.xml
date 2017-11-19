@@ -9,14 +9,70 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  	<servlet-class>com.zeratul.web.AdminProductsServlet</servlet-class>
-  	<servlet-name>AdminProductsServlet</servlet-name>
+    <servlet-name>AdminProductsServlet</servlet-name>
+    <servlet-class>com.zeratul.web.AdminProductsServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>AdminProductsServlet</servlet-name>
-  	<url-pattern>/adminProductsServlet</url-pattern>
+    <servlet-name>AdminProductsServlet</servlet-name>
+    <url-pattern>/adminProductsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminAddProductUI</servlet-name>
+    <servlet-class>com.zeratul.web.AdminAddProductUI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddProductUI</servlet-name>
+    <url-pattern>/adminAddProductUI</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminAddProductServlet</servlet-name>
+    <servlet-class>com.zeratul.web.AdminAddProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddProductServlet</servlet-name>
+    <url-pattern>/adminAddProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminDelProductservlet</servlet-name>
+    <servlet-class>com.zeratul.web.AdminDelProductservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDelProductservlet</servlet-name>
+    <url-pattern>/adminDelProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminUpdateProductUI</servlet-name>
+    <servlet-class>com.zeratul.web.AdminUpdateProductUI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateProductUI</servlet-name>
+    <url-pattern>/adminUpdateProductUI</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminUpdateProduct</servlet-name>
+    <servlet-class>com.zeratul.web.AdminUpdateProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateProduct</servlet-name>
+    <url-pattern>/adminUpdateProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminGetProductsByCondition</servlet-name>
+    <servlet-class>com.zeratul.web.AdminGetProductsByCondition</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminGetProductsByCondition</servlet-name>
+    <url-pattern>/adminGetProductsByCondition</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ProductListServlet</servlet-name>
+    <servlet-class>com.zeratul.web.ProductListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductListServlet</servlet-name>
+    <url-pattern>/productList</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -14,7 +14,7 @@
 				//获得当前回显的product的cid
 				$("#cid option[value='${product.cid }']").prop("selected",true);
 				//是否热门
-				$("#is_hot option[value='${product.is_hot }']").prop("selected",true);
+				$("#isHot option[value='${product.isHot }']").prop("selected",true);
 			});
 		
 		
@@ -66,7 +66,7 @@
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
 						
-						<select id="is_hot" name="is_hot">
+						<select id="isHot" name="isHot">
 							<option value="1">是</option>
 							<option value="0">否</option>
 						</select>
@@ -77,13 +77,13 @@
 						市场价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="market_price" value="${product.market_price }" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="marketPrice" value="${product.marketPrice }" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
 						商城价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="shop_price" value="${product.shop_price }" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="shopPrice" value="${product.shopPrice }" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +91,7 @@
 						商品图片：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<input type="file" name="upload" />
+						<input type="file" name="upload" value="${product.pimage }" />
 					</td>
 				</tr>
 				<tr>
@@ -100,7 +100,7 @@
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
 						<select id="cid" name="cid">
-							<c:forEach items="${categoryList }" var="category">
+							<c:forEach items="${categories }" var="category">
 								<option value="${category.cid }">${category.cname }</option>
 							</c:forEach>
 						</select>

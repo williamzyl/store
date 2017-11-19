@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
 import com.zeratul.service.AdminProductService;
 
@@ -37,6 +38,10 @@ public class AdminProductsServlet extends HttpServlet {
 		try {
 			products = service.getProducts();
 			request.setAttribute("products", products);
+			
+			List<Category> categorise = service.getAllCategory();
+			
+			request.setAttribute("categorise", categorise);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

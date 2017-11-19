@@ -75,6 +75,14 @@ public class Product {
 	public void setCid(String cid) {
 		this.cid = cid;
 	}
+	@Override
+	public String toString() {
+		return "Product [pid=" + pid + ", pname=" + pname + ", marketPrice=" + marketPrice + ", shopPrice=" + shopPrice
+				+ ", pimage=" + pimage + ", pdate=" + pdate + ", isHot=" + isHot + ", pdesc=" + pdesc + ", pflag="
+				+ pflag + ", cid=" + cid + "]";
+	}
+	
+	
 	
 	
 	

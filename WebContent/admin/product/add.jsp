@@ -42,13 +42,13 @@
 						市场价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="market_price" value="" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="marketPrice" value="" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
 						商城价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="shop_price" value="" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="shopPrice" value="" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 				</tr>
 				<tr>
@@ -66,8 +66,8 @@
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
 						<select name="cid">
 							
-							<c:forEach items="${categoryList }" var="category">
-								<option value="${category.cid}">${category.cname }</option>
+							<c:forEach items="${categories }" var="category">
+								<option value="${category.cid }">${category.cname }</option>
 							</c:forEach>
 							
 						</select>
