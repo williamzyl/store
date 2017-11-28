@@ -65,8 +65,7 @@
     <servlet-name>AdminGetProductsByCondition</servlet-name>
     <url-pattern>/adminGetProductsByCondition</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>ProductListServlet</servlet-name>
     <servlet-class>com.zeratul.web.ProductListServlet</servlet-class>
   </servlet>
@@ -74,5 +73,28 @@
     <servlet-name>ProductListServlet</servlet-name>
     <url-pattern>/productList</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.zeratul.web.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/registerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserActiveServlet</servlet-name>
+    <servlet-class>com.zeratul.web.UserActiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserActiveServlet</servlet-name>
+    <url-pattern>/userActive</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>CheckUserNameServlet</servlet-name>
+    <servlet-class>com.zeratul.web.CheckUserNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckUserNameServlet</servlet-name>
+    <url-pattern>/checkUserName</url-pattern>
+  </servlet-mapping>
 </web-app>
