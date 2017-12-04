@@ -2,31 +2,26 @@ package com.zeratul.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zeratul.bean.Product;
 import com.zeratul.service.ProductService;
 import com.zeratul.vo.Page;
 
-public class ProductListServlet extends HttpServlet {
+public class ProductListByCategory extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5671663480878072561L;
-
-	
-	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		
+		String cid = request.getParameter("cid");
 		
-		ProductService servie=new ProductService();
+		request.setAttribute("cid", cid);
+		ProductService service=new ProductService();
+		
 		String currentPageStr = request.getParameter("currentPage");
 		int currentPage=1;
 		if(currentPageStr!=null){
@@ -37,19 +32,19 @@ public class ProductListServlet extends HttpServlet {
 		}
 		
 		try {
-			Page page = servie.getProducts(currentPage,12);
-			System.out.println(page);
+			Page page =service.getProductsByCategory(currentPage,12,cid);
 			request.setAttribute("page", page);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		request.getRequestDispatcher("/product_list.jsp").forward(request, response);
 		
+		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		
 	}
 }

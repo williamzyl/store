@@ -34,11 +34,7 @@ body {
 
 
 	<div class="row" style="width: 1210px; margin: 0 auto;">
-		<div class="col-md-12">
-			<ol class="breadcrumb">
-				<li><a href="#">首页</a></li>
-			</ol>
-		</div>
+
 		<c:forEach items="${page.products }" var="product">
 		<div class="col-md-2" style="height: 250px;">
 			<a href="product_info.htm"> <img src="${product.pimage }"
@@ -66,7 +62,7 @@ body {
 					aria-hidden="true">&laquo;</span></a></li>
 		</c:if>
 		<c:if test="${page.page!=1 }">
-		<li class=""><a href="${pageContext.request.contextPath }/productList?currentPage=${page.page-1 }" aria-label="Previous"><span
+		<li class=""><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${page.page-1 }&cid=${cid }" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		</c:if>
 		
@@ -77,7 +73,7 @@ body {
 					<li class="active"><a href="javascript:void(0);">${i }</a></li>
 					</c:if>
 					<c:if test="${page.page!=i }">
-					<li class=""><a href="${pageContext.request.contextPath }/productList?currentPage=${i }">${i }</a></li>
+					<li class=""><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${i }&cid=${cid }">${i }</a></li>
 					</c:if>
 					</c:forEach>
 					
@@ -89,7 +85,7 @@ body {
 			</a></li>
 		</c:if>
 		<c:if test="${page.page!=page.totalPage }">
-		<li><a href="${pageContext.request.contextPath }/productList?currentPage=${page.page+1 }" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+		<li><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${page.page+1 }&cid=${cid }" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</c:if>
 			

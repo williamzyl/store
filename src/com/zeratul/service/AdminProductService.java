@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
-import com.zeratul.dao.AdminCategoryDao;
+import com.zeratul.dao.CategoryDao;
 import com.zeratul.dao.AdminProductDao;
 import com.zeratul.vo.Condition;
 
@@ -19,7 +19,7 @@ public class AdminProductService {
 
 	public List<Category> getAllCategory() throws SQLException {
 		
-		AdminCategoryDao dao=new AdminCategoryDao();
+		CategoryDao dao=new CategoryDao();
 		
 		return dao.queryCategorys();
 

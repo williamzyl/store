@@ -9,40 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.zeratul.bean.Category;
-import com.zeratul.bean.Product;
-import com.zeratul.dao.CategoryDao;
-import com.zeratul.service.AdminProductService;
+import com.zeratul.service.CategoryService;
 
-public class AdminUpdateProductUI extends HttpServlet {
+
+public class HeaderServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5489103211204207147L;
+	private static final long serialVersionUID = 4953137145934766567L;
 
-	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		
-		String pid = request.getParameter("pid");
-		
-		AdminProductService service=new AdminProductService();
-		
+		CategoryService service=new CategoryService();
 		try {
-			Product product = service.getProductById(pid);
-			request.setAttribute("product",product);
-			
 			List<Category> categories = service.getAllCategory();
-			request.setAttribute("categories",categories);
+			Gson gson = new Gson();
+			String categoriesJson = gson.toJson(categories);
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(categoriesJson);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
-		request.getRequestDispatcher("/admin/product/edit.jsp").forward(request, response);
-		
+	
+	
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

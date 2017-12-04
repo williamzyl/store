@@ -31,15 +31,15 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">首页</a>
+				<a   class="navbar-brand active" href="#">首页</a> 
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="product_list.htm">手机数码<span class="sr-only">(current)</span></a></li>
+				<ul class="nav navbar-nav" id="categoryUl">
+					<!--<li ><a href="product_list.htm">手机数码<span class="sr-only">(current)</span></a></li>
 					<li><a href="#">电脑办公</a></li>
 					<li><a href="#">电脑办公</a></li>
-					<li><a href="#">电脑办公</a></li>
+					<li><a href="#">电脑办公</a></li>-->
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
@@ -51,3 +51,25 @@
 		</div>
 	</nav>
 </div>
+
+<script type="text/javascript">
+$(function(){
+	var content = "";
+	$.post(
+		"${pageContext.request.contextPath}/header",
+		function(data){
+			//[{"cid":"xxx","cname":"xxxx"},{},{}]
+			//动态创建<li><a href="#">${category.cname }</a></li>
+			for(var i=0;i<data.length;i++){
+				content+="<li><a href='${pageContext.request.contextPath}/productListByCid?cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
+			}
+			
+			//将拼接好的li放置到ul中
+			$("#categoryUl").html(content);
+		},
+		"json"
+	);
+});
+
+
+</script>

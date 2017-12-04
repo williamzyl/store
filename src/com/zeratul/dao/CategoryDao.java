@@ -11,7 +11,7 @@ import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
 import com.zeratul.utils.DataSourceUtils;
 
-public class AdminCategoryDao {
+public class CategoryDao {
 
 	
 	

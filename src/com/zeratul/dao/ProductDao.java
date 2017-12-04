@@ -18,13 +18,19 @@ public class ProductDao {
 		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
 		
 		String sql="select * from product limit ?,?";
-		System.out.println(index);
-		System.out.println(pageCount);
 		List<Product> porducts = runner.query(sql, new BeanListHandler<Product>(Product.class),index,pageCount);
 		
 		return porducts;
 	}
 
+	public List<Product> getProductsByCat(int index, int pageCount,String cid) throws SQLException {
+		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
+		
+		String sql="select * from product where cid=? limit ?,?";
+		List<Product> porducts = runner.query(sql, new BeanListHandler<Product>(Product.class),cid,index,pageCount);
+		
+		return porducts;
+	}
 	
 	
 	public int getProductTotal() throws SQLException{
@@ -33,6 +39,29 @@ public class ProductDao {
 		String sql="select count(*) from product";
 		Long count = (Long) runner.query(sql, new ScalarHandler());
 		return count.intValue();
+	}
+
+	public int getProductTotalByCat(String cid) throws SQLException{
+		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
+		String sql="select count(*) from product where cid=?";
+		Long count = (Long) runner.query(sql, new ScalarHandler(),cid);
+		return count.intValue();
+	}
+
+	public List<Product> findHotProduct() throws SQLException {
+		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
+		String sql="select * from product where isHot=? limit ?,?";
+		List<Product> products = runner.query(sql, new BeanListHandler<Product>(Product.class),1,0,9);
+		return products;
+	}
+
+
+
+	public List<Product> findNewProduct() throws SQLException {
+		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
+		String sql="select * from product order by pdate desc limit ?,?";
+		List<Product> products = runner.query(sql, new BeanListHandler<Product>(Product.class),0,9);
+		return products;
 	}
 	
 }

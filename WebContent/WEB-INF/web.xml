@@ -2,11 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Store</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -89,7 +84,7 @@
     <servlet-name>UserActiveServlet</servlet-name>
     <url-pattern>/userActive</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>CheckUserNameServlet</servlet-name>
     <servlet-class>com.zeratul.web.CheckUserNameServlet</servlet-class>
   </servlet>
@@ -97,4 +92,31 @@
     <servlet-name>CheckUserNameServlet</servlet-name>
     <url-pattern>/checkUserName</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>com.zeratul.web.IndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/indexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>HeaderServlet</servlet-name>
+    <servlet-class>com.zeratul.web.HeaderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HeaderServlet</servlet-name>
+    <url-pattern>/header</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProductListByCategory</servlet-name>
+    <servlet-class>com.zeratul.web.ProductListByCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductListByCategory</servlet-name>
+    <url-pattern>/productListByCid</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
