@@ -2,7 +2,6 @@ package com.zeratul.web;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +21,6 @@ import org.apache.commons.beanutils.Converter;
 import com.zeratul.bean.User;
 import com.zeratul.service.UserService;
 import com.zeratul.utils.CommonUtils;
-import com.zeratul.utils.MD5Utils;
 import com.zeratul.utils.MailUtils;
 
 public class RegisterServlet extends HttpServlet {

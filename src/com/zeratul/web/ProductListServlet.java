@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,8 +39,16 @@ public class ProductListServlet extends HttpServlet {
 		
 		try {
 			Page page = servie.getProducts(currentPage,12);
-			System.out.println(page);
 			request.setAttribute("page", page);
+			
+			Cookie[] cookies = request.getCookies();
+			
+			for (Cookie cookie : cookies) {
+				if("historyPid".equals(cookie.getName())){
+					
+				}
+			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -22,6 +22,13 @@ public class CategoryDao {
 		return categories;
 	}
 
+	public Category getCategory(String cid) throws SQLException {
+		QueryRunner runner=new  QueryRunner(DataSourceUtils.getDataSource());
+		String sql="select * from category where cid=?";
+		Category category=runner.query(sql, new BeanHandler<Category>(Category.class),cid);
+		return category;
+	}
+
 	
 
 	

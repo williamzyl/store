@@ -36,4 +36,10 @@ public class CategoryService {
 		
 
 	}
+
+	public Category getCategory(String cid) throws SQLException {
+		CategoryDao dao=new CategoryDao();
+		return dao.getCategory(cid);
+		
+	}
 }

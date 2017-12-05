@@ -37,7 +37,7 @@ body {
 
 		<c:forEach items="${page.products }" var="product">
 		<div class="col-md-2" style="height: 250px;">
-			<a href="product_info.htm"> <img src="${product.pimage }"
+			<a href="${pageContext.request.contextPath }/productInfo?pid=${product.pid }"> <img src="${product.pimage }"
 				width="170" height="170" style="display: inline-block;">
 			</a>
 			<p>

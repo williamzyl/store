@@ -77,10 +77,10 @@
 				
 				<c:forEach items="${hotProducts }" var="hotPro">
 				<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath }/productInfo?pid=${hotPro.pid }">
 							<img src="${hotPro.pimage }" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="product_info.html" style='color:#666'>${hotPro.pname }</a></p>
+						<p><a href="${pageContext.request.contextPath }/productInfo?pid=${hotPro.pid }" style='color:#666'>${hotPro.pname }</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${hotPro.shopPrice }</font></p>
 					</div>
 				
@@ -111,10 +111,10 @@
 				<c:forEach items="${newProducts }" var="newPro">
 				
 				    <div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath }/productInfo?pid=${newPro.pid }">
 							<img src="${newPro.pimage }" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="product_info.html" style='color:#666'>${newPro.pname }</a></p>
+						<p><a href="${pageContext.request.contextPath }/productInfo?pid=${newPro.pid }" style='color:#666'>${newPro.pname }</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${newPro.shopPrice }</font></p>
 					</div>
 				</c:forEach>

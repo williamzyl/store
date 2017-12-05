@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -62,6 +63,14 @@ public class ProductDao {
 		String sql="select * from product order by pdate desc limit ?,?";
 		List<Product> products = runner.query(sql, new BeanListHandler<Product>(Product.class),0,9);
 		return products;
+	}
+
+	public Product getProduct(String pid) throws SQLException {
+		QueryRunner runner=new QueryRunner(DataSourceUtils.getDataSource());
+		String sql="select * from product where pid=?";
+		Product product = runner.query(sql, new BeanHandler<Product>(Product.class),pid);
+		return product;
+		
 	}
 	
 }

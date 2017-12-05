@@ -76,6 +76,11 @@ public class ProductService {
 		
 	}
 
+	public Product getProduct(String pid) throws SQLException {
+		ProductDao dao=new ProductDao();
+		return dao.getProduct(pid);
+	}
+
 	
 	
 }

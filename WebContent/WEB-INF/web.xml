@@ -108,7 +108,6 @@
     <servlet-name>HeaderServlet</servlet-name>
     <url-pattern>/header</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ProductListByCategory</servlet-name>
     <servlet-class>com.zeratul.web.ProductListByCategory</servlet-class>
@@ -116,6 +115,14 @@
   <servlet-mapping>
     <servlet-name>ProductListByCategory</servlet-name>
     <url-pattern>/productListByCid</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ProductInfoServlet</servlet-name>
+    <servlet-class>com.zeratul.web.ProductInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductInfoServlet</servlet-name>
+    <url-pattern>/productInfo</url-pattern>
   </servlet-mapping>
   
   
