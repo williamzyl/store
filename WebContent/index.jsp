@@ -77,7 +77,7 @@
 				
 				<c:forEach items="${hotProducts }" var="hotPro">
 				<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath }/productInfo?pid=${hotPro.pid }">
+						<a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${hotPro.pid }">
 							<img src="${hotPro.pimage }" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="${pageContext.request.contextPath }/productInfo?pid=${hotPro.pid }" style='color:#666'>${hotPro.pname }</a></p>

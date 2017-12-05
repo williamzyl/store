@@ -37,7 +37,7 @@ body {
 
 		<c:forEach items="${page.products }" var="product">
 		<div class="col-md-2" style="height: 250px;">
-			<a href="${pageContext.request.contextPath }/productInfo?pid=${product.pid }"> <img src="${product.pimage }"
+			<a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${product.pid }"> <img src="${product.pimage }"
 				width="170" height="170" style="display: inline-block;">
 			</a>
 			<p>
@@ -62,7 +62,7 @@ body {
 					aria-hidden="true">&laquo;</span></a></li>
 		</c:if>
 		<c:if test="${page.page!=1 }">
-		<li class=""><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${page.page-1 }&cid=${cid }" aria-label="Previous"><span
+		<li class=""><a href="${pageContext.request.contextPath }/product?method=productList&currentPage=${page.page-1 }&cid=${cid }" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		</c:if>
 		
@@ -73,7 +73,7 @@ body {
 					<li class="active"><a href="javascript:void(0);">${i }</a></li>
 					</c:if>
 					<c:if test="${page.page!=i }">
-					<li class=""><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${i }&cid=${cid }">${i }</a></li>
+					<li class=""><a href="${pageContext.request.contextPath }/product?method=productList&currentPage=${i }&cid=${cid }">${i }</a></li>
 					</c:if>
 					</c:forEach>
 					
@@ -85,7 +85,7 @@ body {
 			</a></li>
 		</c:if>
 		<c:if test="${page.page!=page.totalPage }">
-		<li><a href="${pageContext.request.contextPath }/productListByCid?currentPage=${page.page+1 }&cid=${cid }" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+		<li><a href="${pageContext.request.contextPath }/product?method=productList&currentPage=${page.page+1 }&cid=${cid }" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</c:if>
 			
@@ -106,9 +106,13 @@ body {
 		<div style="overflow: hidden;">
 
 			<ul style="list-style: none;">
-				<li
+			<c:forEach items="${historyProducts }" var="pro">
+			<li
 					style="width: 150px; height: 216; float: left; margin: 0 8px 0 0; padding: 0 18px 15px; text-align: center;"><img
-					src="products/1/cs10001.jpg" width="130px" height="130px" /></li>
+					src="${pro.pimage }" width="130px" height="130px" /></li>
+			
+			</c:forEach>
+				
 			</ul>
 
 		</div>

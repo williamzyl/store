@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zeratul.service.UserService;
-
+@Deprecated
 public class UserActiveServlet extends HttpServlet {
 
 	/**

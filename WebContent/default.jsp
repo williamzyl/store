@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-request.getRequestDispatcher("/indexServlet").forward(request, response);
+request.getRequestDispatcher("/product?method=index").forward(request, response);
 %>
 </body>
 </html>

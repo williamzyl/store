@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zeratul.service.UserService;
-
+@Deprecated
 public class CheckUserNameServlet extends HttpServlet {
 
 	/**

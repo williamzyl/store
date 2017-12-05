@@ -22,7 +22,7 @@ import com.zeratul.bean.User;
 import com.zeratul.service.UserService;
 import com.zeratul.utils.CommonUtils;
 import com.zeratul.utils.MailUtils;
-
+@Deprecated
 public class RegisterServlet extends HttpServlet {
 
 	/**

@@ -19,6 +19,8 @@ import com.zeratul.bean.Product;
 import com.zeratul.service.CategoryService;
 import com.zeratul.service.ProductService;
 
+
+@Deprecated
 public class ProductInfoServlet extends HttpServlet {
 
 	
@@ -50,6 +52,7 @@ public class ProductInfoServlet extends HttpServlet {
 			
 			Cookie[] cookies = request.getCookies();
 			String pids=null;
+			if(cookies!=null){
 			for (Cookie cookie : cookies) {
 				if("historyPid".equals(cookie.getName())){
 					pids = cookie.getValue();
@@ -69,6 +72,9 @@ public class ProductInfoServlet extends HttpServlet {
 					}
 					pids=sb.substring(0, sb.length()-1);
 				}
+			 }
+			}else{
+				pids=pid;
 			}
 			Cookie cookie=new Cookie("historyPid", pids);
 			response.addCookie(cookie);

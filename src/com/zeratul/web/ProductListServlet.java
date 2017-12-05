@@ -2,6 +2,7 @@ package com.zeratul.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.zeratul.bean.Product;
 import com.zeratul.service.ProductService;
 import com.zeratul.vo.Page;
-
+@Deprecated
 public class ProductListServlet extends HttpServlet {
 
 	/**
@@ -43,9 +44,20 @@ public class ProductListServlet extends HttpServlet {
 			
 			Cookie[] cookies = request.getCookies();
 			
+			List<Product> historyProducts=new ArrayList<Product>();
+			
 			for (Cookie cookie : cookies) {
 				if("historyPid".equals(cookie.getName())){
-					
+					String pids=cookie.getValue();
+					System.out.println(pids);
+					String[] pidList = pids.split(",");
+					for(int i=0;i<pidList.length;i++){
+						Product product = servie.getProduct(pidList[i]);
+						System.out.println(product);
+						historyProducts.add(product);
+					}
+					request.setAttribute("historyProducts", historyProducts);
+					break;
 				}
 			}
 			

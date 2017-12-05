@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zeratul.bean.Product;
 import com.zeratul.service.ProductService;
-
+@Deprecated
 public class IndexServlet extends HttpServlet {
 
 	/**
