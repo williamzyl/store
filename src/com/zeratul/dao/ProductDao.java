@@ -10,7 +10,6 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.zeratul.bean.Product;
 import com.zeratul.utils.DataSourceUtils;
-import com.zeratul.vo.Page;
 
 public class ProductDao {
 

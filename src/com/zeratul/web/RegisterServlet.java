@@ -23,6 +23,7 @@ import com.zeratul.service.UserService;
 import com.zeratul.utils.CommonUtils;
 import com.zeratul.utils.MailUtils;
 @Deprecated
+@SuppressWarnings("all")
 public class RegisterServlet extends HttpServlet {
 
 	/**
@@ -41,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
 		 try {
 			 ConvertUtils.register(new Converter() {
 				
+			
 				@Override
 				public Object convert(Class clazz, Object value) {
 					

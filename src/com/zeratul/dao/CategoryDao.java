@@ -8,7 +8,6 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.zeratul.bean.Category;
-import com.zeratul.bean.Product;
 import com.zeratul.utils.DataSourceUtils;
 
 public class CategoryDao {

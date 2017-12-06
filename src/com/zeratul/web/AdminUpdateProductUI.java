@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
-import com.zeratul.dao.CategoryDao;
 import com.zeratul.service.AdminProductService;
 
 public class AdminUpdateProductUI extends HttpServlet {

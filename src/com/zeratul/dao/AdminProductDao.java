@@ -8,7 +8,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
 import com.zeratul.utils.DataSourceUtils;
 import com.zeratul.vo.Condition;
