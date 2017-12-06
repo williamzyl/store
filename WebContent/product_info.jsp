@@ -22,7 +22,16 @@ body {
 	width: 100%;
 	height: 300px;
 }
+
 </style>
+<script type="text/javascript">
+
+
+   function addToCart() {
+	var num=$('#quantity').val();
+	location.href="${pageContext.request.contextPath}/product?method=addShopCar&pid=${product.pid}&num="+num;
+  }
+</script>
 </head>
 
 <body>
@@ -73,7 +82,7 @@ body {
 						</div>
 
 						<div style="margin: 20px 0 10px 0;; text-align: center;">
-							<a href="cart.htm"> <input
+							<a href="javascript:;" onclick="addToCart()"> <input
 								style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
 								value="加入购物车" type="button">
 							</a> &nbsp;收藏商品

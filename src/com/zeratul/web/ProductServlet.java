@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.zeratul.bean.Cart;
+import com.zeratul.bean.CartItem;
 import com.zeratul.bean.Category;
 import com.zeratul.bean.Product;
 import com.zeratul.service.CategoryService;
@@ -39,7 +43,13 @@ public class ProductServlet extends BaseServlet {
 //	}
 //	
 	
-	
+	/**
+	 * 首页
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		ProductService productService=new ProductService();
@@ -52,8 +62,14 @@ public class ProductServlet extends BaseServlet {
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	
-	
-   public void productInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	/**
+	 * 商品详情
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void productInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	   request.setCharacterEncoding("UTF-8");
 		
 		String pid = request.getParameter("pid");
@@ -113,6 +129,13 @@ public class ProductServlet extends BaseServlet {
 		
 	}
 	
+   /**
+    * 商品分类列表
+    * @param request
+    * @param response
+    * @throws ServletException
+    * @throws IOException
+    */
 	public void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		String cid = request.getParameter("cid");
@@ -159,6 +182,110 @@ public class ProductServlet extends BaseServlet {
 	}
 	
 	
+	/**
+	 * 加入购物车  存入session
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * @throws SQLException 
+	 */
+	public void addShopCar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException, SQLException{
+		
+		ProductService service=new ProductService();
+		
+		String pid = request.getParameter("pid");
+		
+		int productNum = Integer.parseInt(request.getParameter("num"));
+		
+		HttpSession session = request.getSession();
+		
+		Cart cart = (Cart) session.getAttribute("cart");
+		
+		if(cart==null){
+			cart=new Cart();
+		}
+		
+		HashMap<String, CartItem> carItems = cart.getCarItems();
+	
+		CartItem cartItem;
+		
+		Product product;
+		double subTotal=0d;
+		if(carItems.get(pid)==null){
+			cartItem=new CartItem();
+			product = service.getProduct(pid);
+			cartItem.setProduct(product);
+			cartItem.setNum(productNum);
+			
+			subTotal=product.getShopPrice()*productNum;
+			cartItem.setSubTotal(subTotal);
+			carItems.put(pid, cartItem);
+		
+		}else{
+			
+			cartItem=carItems.get(pid);
+			product=cartItem.getProduct();
+			
+			subTotal=product.getShopPrice()*productNum;
+			
+			cartItem.setSubTotal(subTotal+cartItem.getSubTotal());
+			cartItem.setNum(productNum+cartItem.getNum());
+		}
+		
+		
+		double newTotal=cart.getTotalPrice()+subTotal;
+		
+		cart.setTotalPrice(newTotal);
+		session.setAttribute("cart", cart);
+		
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
+		
+	}
 	
 	
+	/**
+	 *  删除单个商品
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void delFromCart(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		
+		String pid=request.getParameter("pid");
+		
+		HttpSession session = request.getSession();
+		
+		Cart cart=(Cart) session.getAttribute("cart");
+		
+		if(cart!=null){
+			HashMap<String, CartItem> carItems = cart.getCarItems();
+			
+			double subTotal= carItems.get(pid).getSubTotal();
+			carItems.remove(pid);
+			cart.setTotalPrice(cart.getTotalPrice()-subTotal);
+		}
+		
+		
+		session.setAttribute("cart", cart);
+		
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
+		
+	}
+
+	/**
+	 * 清空购物车
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	public void clearCart(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("cart");
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
+	}
+
+
 }
