@@ -80,7 +80,7 @@
 						<a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${hotPro.pid }">
 							<img src="${hotPro.pimage }" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="${pageContext.request.contextPath }/productInfo?pid=${hotPro.pid }" style='color:#666'>${hotPro.pname }</a></p>
+						<p><a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${hotPro.pid }" style='color:#666'>${hotPro.pname }</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${hotPro.shopPrice }</font></p>
 					</div>
 				

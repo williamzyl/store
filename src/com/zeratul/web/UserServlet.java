@@ -29,6 +29,13 @@ public class UserServlet extends BaseServlet {
 	 */
 	private static final long serialVersionUID = -5167655563902152242L;
 
+	
+	/**
+	 * 检查用户名
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	public void checkUserName(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String username = request.getParameter("username");
 		UserService service = new UserService();
@@ -38,6 +45,12 @@ public class UserServlet extends BaseServlet {
 		response.getWriter().write(json);
 	}
 
+	/**
+	 * 注册用户
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Map<String, String[]> params = request.getParameterMap();
 
@@ -99,6 +112,12 @@ public class UserServlet extends BaseServlet {
 		}
 	}
 
+	/**
+	 *  用户激活 
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	public void active(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String activeCode = request.getParameter("activeCode");
 
@@ -113,6 +132,24 @@ public class UserServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		UserService userService=new UserService();
+		
+		String username=request.getParameter("username");
+		
+		String password=request.getParameter("password");
+		
+		User user = userService.login(username,password);
+		
+		if(user!=null){
+			request.getSession().setAttribute("user", user);
+			response.sendRedirect(request.getContextPath()+'/');
+		}else{
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
+		}
+		
 	}
 
 }

@@ -7,6 +7,18 @@
 	<welcome-file-list>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<filter>
+	<filter-name>UserLoginPrivilegeFilter</filter-name>
+	<filter-class>com.zeratul.web.filter.UserLoginPrivilegeFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	<filter-name>UserLoginPrivilegeFilter</filter-name>
+	<url-pattern>/Privilege/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
 	<servlet>
 		<servlet-name>AdminProductsServlet</servlet-name>
 		<servlet-class>com.zeratul.web.AdminProductsServlet</servlet-class>

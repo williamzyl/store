@@ -33,6 +33,22 @@ public class UserService {
 		}
 		return isExist>0?true:false;
 	}
+	
+	
 
+	public User login(String username, String password) {
+		UserDao dao=new UserDao();
+		User user =null;
+		try {
+			user=dao.login(username,password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+		
+		
+	}
+	
+	
 	
 }

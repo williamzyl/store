@@ -1,12 +1,14 @@
 package com.zeratul.web;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -14,12 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.zeratul.bean.Cart;
 import com.zeratul.bean.CartItem;
 import com.zeratul.bean.Category;
+import com.zeratul.bean.Order;
+import com.zeratul.bean.OrderItem;
 import com.zeratul.bean.Product;
+import com.zeratul.bean.User;
 import com.zeratul.service.CategoryService;
+import com.zeratul.service.OrderService;
 import com.zeratul.service.ProductService;
+import com.zeratul.utils.CommonUtils;
 import com.zeratul.vo.Page;
 
 public class ProductServlet extends BaseServlet {
@@ -287,5 +296,138 @@ public class ProductServlet extends BaseServlet {
 		response.sendRedirect(request.getContextPath()+"/cart.jsp");
 	}
 
+	
+	/**
+	 * 提交订单
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	public void submitOrder(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		OrderService orderService=new OrderService();
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		if(user==null){
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
+			return;
+		}
+		
+		
+		Order order=new Order();
+		order.setUser(user);
+		
+		order.setOid(CommonUtils.getUUid());
+		
+		Cart cart=(Cart) session.getAttribute("cart");
+		
+		order.setTotal(cart.getTotalPrice());
+		
+		
+		order.setAddress(null);
+		order.setState(0);
+		order.setName(null);
+		order.setTelephone(null);
+		
+//		SimpleDateFormat format=new SimpleDateFormat("yyyy-mm-dd");
+//		String ordertime = format.format(new Date());
+//		System.out.println(ordertime);
+//		order.setOrdertime(new Date());
+		order.setOrdertime(null);
+		
+		HashMap<String, CartItem> carItems = cart.getCarItems();
+		
+		for (Map.Entry<String, CartItem> entry: carItems.entrySet()) {
+			CartItem cartItem = entry.getValue();
+			OrderItem orderItem=new OrderItem();
+			orderItem.setItemid(CommonUtils.getUUid());
+			orderItem.setCount(cartItem.getNum());
+			orderItem.setProduct(cartItem.getProduct());
+			orderItem.setSubTotal(cartItem.getSubTotal());
+			orderItem.setOrder(order);
+			order.getItems().add(orderItem);
+		}
+		
+		session.setAttribute("order", order);
+		
+		if(orderService.submitOrder(order)){
+			// 订单提交成功
+			response.sendRedirect(request.getContextPath()+"/order_info.jsp");
+			return;
+		}else{
+			// 订单提交失败
+			response.sendRedirect(request.getContextPath()+"/cart.jsp");
+		}
+		
+	}
+	
+	
+	/**
+	 * 确认订单
+	 * @param request 
+	 * @param response
+	 * @throws IOException
+	 */
+	public void confirmOrder(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		OrderService orderService=new OrderService();
+		
+		HttpSession session = request.getSession();
+		Order order=(Order) session.getAttribute("order");
+		
+		if(order==null){
+			response.sendRedirect(request.getContextPath()+"/");
+			return;
+		}
+		
+		Map<String, String[]> properties = request.getParameterMap();
+		
+		try {
+			BeanUtils.populate(order, properties);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
+		//TODO 接入支付
+		
+		order.setState(1);
+		orderService.confirmOrder(order);
+		
+		
+		session.removeAttribute("order");
+		response.sendRedirect(request.getContextPath()+"/");
+		
+	}
 
+	/**
+	 * 我的订单
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */ 
+	public void myOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession();
+		User user=(User) session.getAttribute("user");
+		
+		if(user==null){
+			response.sendRedirect(request.getContextPath()+"/");
+			return;
+		}
+		OrderService orderService=new OrderService();
+		
+		try {
+			List<Order> orders = orderService.getAllOrderByUser(user);
+			request.setAttribute("orders", orders);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		request.getRequestDispatcher("/order_list.jsp").forward(request, response);
+		
+		
+	}
+	
 }
