@@ -2,7 +2,6 @@ package com.zeratul.dao;
 
 import java.sql.SQLException;
 
-import javax.jws.soap.SOAPBinding.Use;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;

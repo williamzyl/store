@@ -1,20 +1,16 @@
 package com.zeratul.dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import com.zeratul.bean.Order;
 import com.zeratul.bean.OrderItem;
-import com.zeratul.bean.Product;
 import com.zeratul.utils.DataSourceUtils;
 
 public class OrderDao {
